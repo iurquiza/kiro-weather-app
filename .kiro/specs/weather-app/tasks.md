@@ -23,9 +23,9 @@ This plan implements the weather-app feature in 13 sequential tasks, progressing
 
 ## Tasks
 
-- [ ] 1. Set up project structure and PowerShell HTTP server
-  - [ ] 1.1 Create the project root with `index.html`, `weather.js`, and `server.ps1` files (empty stubs)
-  - [ ] 1.2 Implement `server.ps1` using `System.Net.HttpListener` to serve static files on `http://localhost:8080`
+- [x] 1. Set up project structure and PowerShell HTTP server
+  - [x] 1.1 Create the project root with `index.html`, `weather.js`, and `server.ps1` files (empty stubs)
+  - [x] 1.2 Implement `server.ps1` using `System.Net.HttpListener` to serve static files on `http://localhost:8080`
     - Serve files from the script's own directory
     - Return `index.html` for root requests (`/` and empty path) with HTTP 200
     - Map `.html` → `text/html`, `.js` → `application/javascript`, `.css` → `text/css`, all others → `application/octet-stream`
