@@ -1,0 +1,8 @@
+- Keep the design simple. 
+- Use HTML and JavaScript to build the app. 
+- Do not implement caching or classes or interfaces. 
+- Limit the unit test code to only basic testing. The goal is to complete the project in 20 minutes.
+- Do not hardcode or store city names in the web app code. Instead pass city names entered by the web app UI end user directly to the National Weather Service API. 
+- If you face path issues trying to start the web app, create a batch script to start the web app.
+- Avoid CORS errors by using Nominatim geocoding.
+- Run the app on localhost:8080 using a PowerShell script to start a local HTTP server.
