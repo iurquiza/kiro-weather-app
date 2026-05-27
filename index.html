@@ -4,9 +4,65 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1rem;
+    }
+
+    #search-section {
+      margin-bottom: 1rem;
+    }
+
+    #loading-indicator {
+      margin-bottom: 0.5rem;
+    }
+
+    #error-region {
+      display: block;
+      color: #c0392b;
+      background-color: #fdecea;
+      border: 1px solid #e74c3c;
+      border-radius: 4px;
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 1rem;
+      min-height: 0;
+    }
+
+    #error-region:empty {
+      display: none;
+    }
+
+    #weather-display {
+      display: block;
+    }
+  </style>
 </head>
 <body>
-  <!-- Content will be added in task 2 -->
+  <h1>Weather App</h1>
+
+  <div id="search-section">
+    <input
+      type="text"
+      id="city-input"
+      placeholder="Enter a U.S. city (e.g. Austin, TX)"
+      maxlength="255"
+      aria-label="City name"
+    />
+    <button id="submit-btn" type="button">Get Weather</button>
+  </div>
+
+  <div id="loading-indicator" style="display:none">Loading...</div>
+
+  <div id="error-region"></div>
+
+  <div id="weather-display">
+    <div id="current-conditions"></div>
+    <div id="forecast-container"></div>
+  </div>
+
   <script type="module" src="weather.js"></script>
 </body>
 </html>

@@ -35,10 +35,12 @@ npm install
 
 | Service | Base URL |
 |---|---|
-| Census Geocoder | `https://geocoding.geo.census.gov/geocoder/locations/geographies` |
+| Nominatim Geocoder | `https://nominatim.openstreetmap.org/search` |
 | NWS Points | `https://api.weather.gov/points/{lat},{lon}` |
 | NWS Observations | `https://api.weather.gov/stations/{stationId}/observations/latest` |
 | NWS Forecast | `https://api.weather.gov/gridpoints/{wfo}/{x},{y}/forecast` |
+
+> **Note:** Nominatim is used instead of the Census Geocoder to avoid CORS issues. It supports browser requests natively, requires no API key, and returns lat/lon directly. Always pass `countrycodes=us` to restrict results to the U.S.
 
 ## Unit Conversions
 
