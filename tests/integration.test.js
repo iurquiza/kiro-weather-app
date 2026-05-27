@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
-import { geocodeCity, getPoint, getLatestObservation, getForecast } from '../weather.js';
+import { geocodeCity, getPoint, getLatestObservation, getForecast, handleSubmit } from '../weather.js';
 
 // ---------------------------------------------------------------------------
 // Test data constants
@@ -78,11 +78,11 @@ afterEach(() => {
 });
 
 // ---------------------------------------------------------------------------
-// 13.1 — Happy path: full pipeline returns correct data
+// 13.1 — Happy path: full pipeline renders Weather_Display correctly
 // ---------------------------------------------------------------------------
 
 describe('13.1 Happy path', () => {
-  it('geocoding → NWS point → observation + forecast returns correct data', async () => {
+  it('geocoding → NWS point → observation + forecast → full Weather_Display rendered correctly', async () => {
     // fetch call order: Nominatim → NWS point → stations → observation → forecast
     fetch
       .mockReturnValueOnce(mockResponse(NOMINATIM_RESPONSE))
@@ -91,20 +91,52 @@ describe('13.1 Happy path', () => {
       .mockReturnValueOnce(mockResponse(OBSERVATION_RESPONSE))
       .mockReturnValueOnce(mockResponse(FORECAST_RESPONSE));
 
-    const geo = await geocodeCity('Austin');
-    expect(geo.city).toBe('Austin');
-    expect(geo.lat).toBeCloseTo(30.2672, 3);
+    // Set the city input value and trigger the full submit flow
+    document.getElementById('city-input').value = 'Austin';
+    await handleSubmit();
 
-    const point = await getPoint(geo.lat, geo.lon);
-    expect(point.forecastUrl).toContain('forecast');
+    // --- Current conditions ---
+    const currentEl = document.getElementById('current-conditions');
+    const currentHTML = currentEl.innerHTML;
 
-    const conditions = await getLatestObservation(point.observationStationsUrl);
-    // 25°C → (25 * 9/5) + 32 = 77°F
-    expect(conditions.temperatureF).toBe(77);
-    expect(conditions.description).toBe('Sunny');
+    // City name rendered
+    expect(currentHTML).toContain('Austin');
 
-    const forecast = await getForecast(point.forecastUrl);
-    expect(forecast).toHaveLength(10);
+    // Temperature: 25°C → 77°F
+    expect(currentHTML).toContain('77°F');
+
+    // Description
+    expect(currentHTML).toContain('Sunny');
+
+    // Wind: 16.09 km/h → 10 mph, 180° → S
+    expect(currentHTML).toContain('10 mph');
+    expect(currentHTML).toContain('S');
+
+    // Humidity: 60%
+    expect(currentHTML).toContain('60%');
+
+    // Weather icon for "Sunny" → ☀
+    expect(currentHTML).toContain('☀');
+
+    // --- Forecast table ---
+    const forecastEl = document.getElementById('forecast-container');
+    const forecastHTML = forecastEl.innerHTML;
+
+    // Table structure present
+    expect(forecastEl.querySelector('table')).not.toBeNull();
+    expect(forecastEl.querySelectorAll('tbody tr')).toHaveLength(5);
+
+    // Each row has high and low temperatures
+    const rows = forecastEl.querySelectorAll('tbody tr');
+    rows.forEach(row => {
+      expect(row.innerHTML).toContain('°F');
+    });
+
+    // No error shown in #error-region
+    expect(document.getElementById('error-region').textContent).toBe('');
+
+    // Loading indicator hidden after completion
+    expect(document.getElementById('loading-indicator').style.display).toBe('none');
   });
 });
 

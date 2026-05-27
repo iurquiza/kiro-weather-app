@@ -1,5 +1,5 @@
 // weather.js — Main ES module for the weather app
-export { degreesToCardinal, celsiusToFahrenheit, kmhToMph, getIcon, geocodeCity, getPoint, getLatestObservation, getForecast, groupForecastDays };
+export { degreesToCardinal, celsiusToFahrenheit, kmhToMph, getIcon, geocodeCity, getPoint, getLatestObservation, getForecast, groupForecastDays, handleSubmit };
 
 // ---------------------------------------------------------------------------
 // Error Classes

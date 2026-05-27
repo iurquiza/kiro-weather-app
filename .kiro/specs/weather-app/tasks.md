@@ -147,11 +147,11 @@ This plan implements the weather-app feature in 13 sequential tasks, progressing
 
 - [ ] 13. Write integration tests
   - [ ] 13.1 Happy path: geocoding → NWS point → observation + forecast → full `Weather_Display` rendered correctly
-  - [~] 13.2 Geocoding zero results → error message shown in `#error-region`, `City_Input` value preserved
-  - [~] 13.3 NWS point returns HTTP 500 → "weather unavailable" error shown
-  - [~] 13.4 Empty observation station list → "no stations" error shown
-  - [~] 13.5 Forecast fetch fails, observation succeeds → current conditions shown, forecast error displayed in forecast table area only
-  - [~] 13.6 Timeout on any fetch → correct timeout error message shown, `City_Input` preserved
+  - [ ] 13.2 Geocoding zero results → error message shown in `#error-region`, `City_Input` value preserved
+  - [ ] 13.3 NWS point returns HTTP 500 → "weather unavailable" error shown
+  - [ ] 13.4 Empty observation station list → "no stations" error shown
+  - [ ] 13.5 Forecast fetch fails, observation succeeds → current conditions shown, forecast error displayed in forecast table area only
+  - [ ] 13.6 Timeout on any fetch → correct timeout error message shown, `City_Input` preserved
   - **Validates: Requirements 1.3, 1.9, 1.10, 2.3, 2.5, 2.6, 3.5, 3.6, 3.7, 3.8, 4.1, 4.2**
 
 ## Notes
