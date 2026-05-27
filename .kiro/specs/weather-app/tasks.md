@@ -113,7 +113,7 @@ This plan implements the weather-app feature in 13 sequential tasks, progressing
   - [x] 11.8 Unit test error message selection — each error type maps to the correct user-facing string
   - **Validates: Requirements 1.3, 2.7, 3.1, 3.2, 3.3**
 
-- [ ] 12. Write property-based tests using fast-check
+- [x] 12. Write property-based tests using fast-check
   - [x] 12.1 **P1** — Temperature conversion round-trip: for any °C in [–100, 60], converting to °F and back is within 0.5°C
     - `fc.float({ min: -100, max: 60 })`
     - **Validates: Requirements 3.1**
@@ -138,15 +138,15 @@ This plan implements the weather-app feature in 13 sequential tasks, progressing
   - [x] 12.8 **P8** — HTTP error status codes trigger service-identified error messages: any status in [400, 599] produces a message naming the failing service without raw codes or stack traces
     - `fc.integer({ min: 400, max: 599 })`
     - **Validates: Requirements 2.5, 4.1**
-  - [ ] 12.9 **P9** — First geocoding result's coordinates are always used: any multi-match Census response always passes the first match's `x`/`y` to the NWS point lookup
+  - [x] 12.9 **P9** — First geocoding result's coordinates are always used: any multi-match Census response always passes the first match's `x`/`y` to the NWS point lookup
     - `fc.array(addressMatchArb, { minLength: 1 })`
     - **Validates: Requirements 1.6**
-  - [~] 12.10 **P10** — First observation station is always used: any multi-station NWS response always uses the first station's `stationIdentifier`
+  - [x] 12.10 **P10** — First observation station is always used: any multi-station NWS response always uses the first station's `stationIdentifier`
     - `fc.array(stationArb, { minLength: 1 })`
     - **Validates: Requirements 2.2**
 
 - [ ] 13. Write integration tests
-  - [~] 13.1 Happy path: geocoding → NWS point → observation + forecast → full `Weather_Display` rendered correctly
+  - [ ] 13.1 Happy path: geocoding → NWS point → observation + forecast → full `Weather_Display` rendered correctly
   - [~] 13.2 Geocoding zero results → error message shown in `#error-region`, `City_Input` value preserved
   - [~] 13.3 NWS point returns HTTP 500 → "weather unavailable" error shown
   - [~] 13.4 Empty observation station list → "no stations" error shown
